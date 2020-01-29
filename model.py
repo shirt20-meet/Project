@@ -9,5 +9,6 @@ class Place(Base):
     __tablename__ = "places"
     id = Column(Integer, primary_key=True)
     name = Column(String)
+    country = Column(String)
     city = Column(String)
     street = Column(String)

@@ -2,6 +2,7 @@
 <html>
 <head>
 <title>Add Place</title>
+
 	<link rel="stylesheet" type="text/css" href="{{url_for('static',filename='creative.css')}}">
 
 	<link rel="stylesheet"href="https://fonts.googleapis.com/css?family=Handlee">
@@ -50,31 +51,42 @@
 		<li><a href="{{url_for('addPlace')}}">Add Place</a></li>
 	</ul>
 
+	<!-- {% if places %}
+	{% for place in places %}
 	<div>
-		<form action="/addPlace" method="POST">
-		<div class="form-group floating-label-form-group controls mb-0 pb-2">
-			<label>Place Name</label>
-			<input class="form-control" type="text" name="name" placeholder="Place Name" required="required">
-			<p class="help-block text-danger"></p><br>
-
-			<label>Place Country</label>
-			<input class="form-control" type="text" name="country" placeholder="Place Country" required="required">
-			<p class="help-block text-danger"></p><br>
-
-			<label>Place City</label>
-			<input class="form-control" type="text" name="city" placeholder="Place City" required="required">
-			<p class="help-block text-danger"></p><br>
-
-			<label>Place Street</label>
-			<input class="form-control" type="text" name="street" placeholder="Place Street" required="required">
-			<p class="help-block text-danger"></p><br>
-			<div class="form-group">
-				<button type="submit" class="button button4">Send</button>
-			</div>
-		</div>
-		</form>
+		<h1>{{place.name}}</h1>
 	</div>
+	{% endfor%}
+	{% else %}
+	<h2>Sorry, your database is empty.</h2>
+	{% endif %} -->
+
+	<section>
+	 	<div>
+
+			{% for place in places %}
+			<li style="list-style: none;" class="place_info">
+			<div style="position: relative;top:opx;">
+				<b>place name:</b> {{place.name}}
+				<br><b>place country:</b> {{place.country}}
+				<br><b>place city:</b> {{place.city}}
+				<br><b>place street:</b> {{place.street}}
+				<br><button class="button" id="{{place.id}}">Show Map</button>
+			</div>
+			<iframe
+				style='display:none;' id="description_{{place.id}}"
+				width="600"
+				height="450"
+				frameborder="0" style="border:0"
+				src="https://www.google.com/maps/embed/v1/place?key=AIzaSyDb6rgySRK06gNSaMXSSWsu2wW61KbdIdY	&q={{place.street}},{{place.city}},{{place.country}}" allowfullscreen>
+			</iframe>					
+			</li>
+
+			{% endfor %}
+		</div>
+	</section>
 
 	<script src="{{url_for('static', filename='js/map_button.js')}}"></script>
+
 </body>
 </html>

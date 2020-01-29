@@ -4,8 +4,16 @@
 	<title>Shir's Website</title>
 
 	<link rel="stylesheet" type="text/css" href="{{url_for('static',filename='creative.css')}}">
-	
+
+	<link rel="stylesheet"href="https://fonts.googleapis.com/css?family=Handlee">
+    
 	<style>
+	body {
+ 		font-family: 'Handlee', s20if;
+  		font-size: 20px;
+	}
+
+    /*nav bar*/
 	ul {
 		list-style-type: none;
 		margin: 0;
@@ -40,54 +48,21 @@
 
 	<!-- nav bar -->
 	<ul>
-		<li><a class="active" href="#home">Home</a></li>
-		<li><a href="#api">Api</a></li>
-		<li><a href="#AddPlaces">Add Place</a></li>
-		<li><a href="#about">About</a></li>
+		<li><a class="active" href="{{url_for('home')}}">Home</a></li>
+		<li><a href="{{url_for('api')}}">Api</a></li>
+		<li><a href="{{url_for('addPlace')}}">Add Place</a></li>
 	</ul>
 
-		<div class="container">
-			<img src="static/image.jpg" alt="Image" class="image">
+	
+	<div class="container">
+		<img src="static/image.jpg" alt="Image" class="image">
 			<div class="overlay">
 	 			<div class="text">Welcome to my website :)</div>
-	 		</div>
-		</div>
+ 			</div>
+	</div>
 
-	{% for store in stores %}
+	<script src="{{url_for('static', filename='js/map_button.js')}}"></script>	
 
-	<li style="list-style: none;" class="place_info">
-    <div style="position: relative;top:opx;">
-		<b>place name:</b> {{place.name}}
-		<br><b>place city:</b> {{place.city}}
-		<br><b>place street:</b> {{place.street}}
-		<br><button class="button" id="{{place.id}}">Show Map</button>
-    </div>
-	<iframe
-		style='display:none;' id="description_{{place.id}}"
-		width="600"
-		height="450"
-		frameborder="0" style="border:0"
-		src="https://www.google.com/maps/embed/v1/place?key=AIzaSyDb6rgySRK06gNSaMXSSWsu2wW61KbdIdY	&q={{store.street}},{{store.city}}" allowfullscreen>
-	</iframe>
-	</li>
 
-	<br>
-	<br>
-	{% endfor %}
-
-	<!-- google map api -->
-	<!-- <div id="googleMap" style="width:100%;height:400px;"></div>
-
-	<script>
-	function myMap() {
-	var mapProp= {
-			center:new google.maps.LatLng(51.508742,-0.120850),
-			zoom:5,
-		};
-		var map = new google.maps.Map(document.getElementById("googleMap"),mapProp);
-	}
-	</script>
-
-	<script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY&callback=myMap"></script> -->
 </body>
 </html>
